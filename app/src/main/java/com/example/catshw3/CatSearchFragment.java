@@ -37,8 +37,7 @@ public class CatSearchFragment extends Fragment {
 
     private ArrayList<Cat> catArrayList;
     private RecyclerView recyclerView;
-    private RequestQueue requestQueue;
-    private String url;
+
 
     public CatSearchFragment() {
     }
@@ -50,13 +49,13 @@ public class CatSearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cat_search, container, false);
 
         recyclerView = view.findViewById(R.id.rv_search);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         final CatSearchAdapter searchAdapter = new CatSearchAdapter();
 //        ImageButton searchButton = frameLayout.findViewById(R.id.searchButton);
 
         //filling recyclerview with api data
-        requestQueue = Volley.newRequestQueue(getContext());
+        final RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         String url = "https://api.thecatapi.com/v1/breeds?api-key=2b4f1963-46bd-4341-a1e6-6d15ca0dd538";
 //
 //        sendRequest();

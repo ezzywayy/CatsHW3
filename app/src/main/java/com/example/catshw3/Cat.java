@@ -18,11 +18,11 @@ public class Cat {
             this.description = description;
         }
 
-        public String getWeight() {
+        public CatWeight getWeight() {
             return weight;
         }
 
-        public void setWeight(String weight) {
+        public void setMetric(CatWeight weight) {
             this.weight = weight;
         }
 
@@ -77,26 +77,26 @@ public class Cat {
     private String id;
         private String name;
         private String description;
-        private String weight;
+        private CatWeight weight;
         private String temperament;
         private String origin;
         private String life_span;
         private String wikipedia_url;
         private int dog_friendly;
 
-//        public Cat(String name, String description, String weight, String temperament, String origin, String life_span, String wikipedia_url, int dog_friendly) {
-//            this.name = name;
-//            this.description = description;
-//            this.weight = weight;
-//            this.temperament = temperament;
-//            this.origin = origin;
-//            this.life_span = life_span;
-//            this.wikipedia_url = wikipedia_url;
-//            this.dog_friendly = dog_friendly;
-//        }
-//    public Cat(String id, String name){
-//        this.id = id;
-//        this.name = name;
-//    }
+        public Cat(String name, String description, CatWeight weight, String temperament, String origin, String life_span, String wikipedia_url, int dog_friendly) {
+            this.name = name;
+            this.description = description;
+            this.weight = weight;
+            this.temperament = temperament;
+            this.origin = origin;
+            this.life_span = life_span;
+            this.wikipedia_url = wikipedia_url;
+            this.dog_friendly = dog_friendly;
+        }
+    public Cat(String id, String name){
+        this.id = id;
+        this.name = name;
+    }
 
 }
