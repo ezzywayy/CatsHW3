@@ -1,6 +1,7 @@
 package com.example.catshw3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,10 @@ import java.util.List;
 public class CatSearchAdapter extends RecyclerView.Adapter<CatSearchAdapter.CatViewHolder> {
     public ArrayList<Cat> catArrayList;
 
+    public CatSearchAdapter(ArrayList<Cat> catArrayList){
+        this.catArrayList = catArrayList;
+    }
+
     public void setData(ArrayList<Cat> catList) {
         this.catArrayList = catList;
     }
@@ -32,9 +37,20 @@ public class CatSearchAdapter extends RecyclerView.Adapter<CatSearchAdapter.CatV
 
     @Override
     public void onBindViewHolder(@NonNull CatViewHolder holder, int position) {
-        final Cat catObject = catArrayList.get(position);
+        final Cat cat = catArrayList.get(position);
         final Context context = holder.view.getContext();
-        holder.catName.setText(catObject.getName());
+        holder.catName.setText(cat.getName());
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(context, CatDetailActivity.class);
+                intent1.putExtra("id", cat.getId());
+                context.startActivity(intent1);
+            }
+
+        });
+
+
     }
 
     @Override
@@ -52,47 +68,10 @@ public class CatSearchAdapter extends RecyclerView.Adapter<CatSearchAdapter.CatV
             catName = itemView.findViewById(R.id.textView);
         }
     }
-//    public void filterList(ArrayList<Cat> filteredList) {
-//        catArrayList = filteredList;
-//        notifyDataSetChanged();
-//    }
-//    CatSearchAdapter(List<Cat> catList) {
-//        this.catList = catList;
-//        catListFull = new ArrayList<>(catList);
-//    }
-//    @Override
-//    public Filter getFilter() {
-//        return catFilter;
-//    }
-//    private Filter catFilter = new Filter() {
+    public void filterList(ArrayList<Cat> filteredList) {
+        this.catArrayList = filteredList;
+        notifyDataSetChanged();
+    }
 //
-//        @Override
-//        protected FilterResults performFiltering(CharSequence constraint) {
-//            List<Cat> filteredCatList = new ArrayList<>();
-//
-//            if (constraint == null || constraint.length() == 0) {
-//                filteredCatList.addAll(catListFull);
-//            } else {
-//                String filterPattern = constraint.toString().toLowerCase().trim();
-//
-//                for (Cat cat : catListFull) {
-//                    if (cat.getName().toLowerCase().contains(filterPattern)) {
-//                        filteredCatList.add(cat);
-//                    }
-//                }
-//            }
-//            FilterResults results = new FilterResults();
-//            results.values = filteredCatList;
-//
-//            return results;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//            catList.clear();
-//            catList.addAll((List)results.values);
-//            notifyDataSetChanged();
-//        }
-//    };
 
 }
